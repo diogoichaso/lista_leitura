@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:lista_leitura/pages/formulario_livro_page.dart';
 import 'pages/lista_livros_page.dart';
 
 void main() {
@@ -21,7 +21,11 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: ListaLivrosPage(),
+      routes: {
+        '/':(context) => ListaLivrosPage(),//"Home"
+        '/form':(context) => FormularioLivroPage(),
+      },
+     // home: ListaLivrosPage(), - Usando Navegação por rotas, não precisa do atributo home:
     );
   }
 }

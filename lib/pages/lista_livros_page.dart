@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lista_leitura/classes/livro.dart';
+import 'package:lista_leitura/pages/formulario_livro_page.dart';
 
 import '../componentes/componentes.dart';
 
@@ -11,7 +12,6 @@ class ListaLivrosPage extends StatefulWidget {
 }
 
 class _ListaLivrosPageState extends State<ListaLivrosPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,15 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                           ),
                         ),
                         FloatingActionButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed('/form');
+                            //NAVEGAÇÃO DIRETA
+                            // Navigator.of(context).push(
+                            // MaterialPageRoute(
+                            // builder: (context) => FormularioLivroPage(),
+                            //),
+                            //);
+                          },
                           child: Icon(Icons.add),
                         ),
                       ],
