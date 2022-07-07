@@ -12,6 +12,8 @@ class ListaLivrosPage extends StatefulWidget {
 }
 
 class _ListaLivrosPageState extends State<ListaLivrosPage> {
+  List<Livro> meuLivro = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,8 +53,8 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                     ),
                   ),
                   LinhaHorizontal(),
-                  ListaLivros(listaDeLivros),
-                  LinhaHorizontal(),
+                  ListaLivros(meuLivro),
+                  if (meuLivro.isNotEmpty) LinhaHorizontal(),
                 ],
               ),
               Padding(

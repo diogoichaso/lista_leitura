@@ -26,7 +26,7 @@ class ListaLivros extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, i) {
-        final livro = listaDeLivros[i];
+        final livro = listaLivros[i];
         return ListTile(
           title: Padding(
             padding: const EdgeInsets.only(left: 58),
@@ -55,7 +55,7 @@ class ListaLivros extends StatelessWidget {
         );
       },
       separatorBuilder: (context, i) => LinhaHorizontal(),
-      itemCount: listaDeLivros.length,
+      itemCount: listaLivros.length,
     );
   }
 }
