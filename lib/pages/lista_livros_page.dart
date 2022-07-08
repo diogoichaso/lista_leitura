@@ -8,11 +8,15 @@ class ListaLivrosPage extends StatefulWidget {
   ListaLivrosPage(livro);
   final Livro livro = Livro("", "", false);
   @override
-  State<ListaLivrosPage> createState() => _ListaLivrosPageState(livro);
+  void initState() {
+    this.livro;
+  }
+
+  @override
+  State<ListaLivrosPage> createState() => _ListaLivrosPageState();
 }
 
 class _ListaLivrosPageState extends State<ListaLivrosPage> {
-  _ListaLivrosPageState(this.livro);
   List<Livro> meuLivro = [];
   Livro livro = Livro("", "", false);
   @override

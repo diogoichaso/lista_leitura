@@ -99,13 +99,14 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
                   if (form != null) {
                     if (form.validate()) {
                       form.save();
+                      print(livro);
                       //widget.onCadastrar(livro);
                       Navigator.of(context).pop();
                       Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => ListaLivrosPage(livro),
-                              ),
-                            );
+                        MaterialPageRoute(
+                          builder: (context) => ListaLivrosPage(livro),
+                        ),
+                      );
                     }
                   }
                 },
