@@ -5,14 +5,23 @@ import 'package:lista_leitura/pages/formulario_livro_page.dart';
 import '../componentes/componentes.dart';
 
 class ListaLivrosPage extends StatefulWidget {
-  ListaLivrosPage({Key? key}) : super(key: key);
-
+  ListaLivrosPage(livro);
+  final Livro livro = Livro("", "", false);
   @override
-  State<ListaLivrosPage> createState() => _ListaLivrosPageState();
+  State<ListaLivrosPage> createState() => _ListaLivrosPageState(livro);
 }
 
 class _ListaLivrosPageState extends State<ListaLivrosPage> {
+  _ListaLivrosPageState(this.livro);
   List<Livro> meuLivro = [];
+  Livro livro = Livro("", "", false);
+  @override
+  void initState() {
+    if (this.livro != null) {
+      meuLivro.add(this.livro);
+      super.initState();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +48,12 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            // Navigator.of(context).push('/form');//NAVEGAÇÃO POR RORAS
+                            // Navigator.of(context).push('/form');//NAVEGAÇÃO POR ROTAS
                             //NAVEGAÇÃO DIRETA
+                            Navigator.of(context).pop();
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    FormularioLivroPage((livro) {
-                                  setState(() {
-                                    meuLivro.add(livro);
-                                  });
-                                }),
+                                builder: (context) => FormularioLivroPage(),
                               ),
                             );
                             //setState(() {
@@ -83,11 +88,7 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
 void lerLivro(context, meuLivro) {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => FormularioLivroPage((livro) {
-        //setState(() {
-          meuLivro.add(livro);
-        //});
-      }),
+      builder: (context) => FormularioLivroPage(),
     ),
   );
 }

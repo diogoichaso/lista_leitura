@@ -3,9 +3,11 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:lista_leitura/classes/livro.dart';
 
+import 'lista_livros_page.dart';
+
 class FormularioLivroPage extends StatefulWidget {
-  FormularioLivroPage(this.onCadastrar);
-  final Function(Livro) onCadastrar;
+  //FormularioLivroPage(this.onCadastrar);
+  //final Function(Livro) onCadastrar;
   @override
   State<FormularioLivroPage> createState() => _FormularioLivroPageState();
 }
@@ -97,8 +99,13 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
                   if (form != null) {
                     if (form.validate()) {
                       form.save();
-                      widget.onCadastrar(livro);
+                      //widget.onCadastrar(livro);
                       Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => ListaLivrosPage(livro),
+                              ),
+                            );
                     }
                   }
                 },
