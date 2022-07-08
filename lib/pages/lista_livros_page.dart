@@ -39,13 +39,21 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                         ),
                         FloatingActionButton(
                           onPressed: () {
-                            Navigator.of(context).pushNamed('/form');
+                            // Navigator.of(context).push('/form');//NAVEGAÇÃO POR RORAS
                             //NAVEGAÇÃO DIRETA
-                            // Navigator.of(context).push(
-                            // MaterialPageRoute(
-                            // builder: (context) => FormularioLivroPage(),
-                            //),
-                            //);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    FormularioLivroPage((livro) {
+                                  setState(() {
+                                    meuLivro.add(livro);
+                                  });
+                                }),
+                              ),
+                            );
+                            //setState(() {
+                            //lerLivro(context, meuLivro);
+                            //});
                           },
                           child: Icon(Icons.add),
                         ),
@@ -70,4 +78,16 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
       ),
     );
   }
+}
+
+void lerLivro(context, meuLivro) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => FormularioLivroPage((livro) {
+        //setState(() {
+          meuLivro.add(livro);
+        //});
+      }),
+    ),
+  );
 }

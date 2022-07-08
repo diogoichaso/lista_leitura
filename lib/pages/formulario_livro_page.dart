@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:lista_leitura/classes/livro.dart';
 
 class FormularioLivroPage extends StatefulWidget {
-  FormularioLivroPage({Key? key}) : super(key: key);
-
+  FormularioLivroPage(this.onCadastrar);
+  final Function(Livro) onCadastrar;
   @override
   State<FormularioLivroPage> createState() => _FormularioLivroPageState();
 }
@@ -95,10 +95,11 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
                 onPressed: () {
                   final form = _formKey.currentState;
                   if (form != null) {
-                    form.validate();
-                    form.save();
-                    print(livro);
-                    ;
+                    if (form.validate()) {
+                      form.save();
+                      widget.onCadastrar(livro);
+                      Navigator.of(context).pop();
+                    }
                   }
                 },
                 child: Text(
