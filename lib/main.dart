@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lista_leitura/classes/livro.dart';
 import 'package:lista_leitura/pages/formulario_livro_page.dart';
 import 'pages/lista_livros_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
+  final Livro livro = Livro();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +27,8 @@ class MyApp extends StatelessWidget {
         //'/':(context) => ListaLivrosPage(),//"Home"
         //'/form':(context) => FormularioLivroPage(),
       },
-     home: ListaLivrosPage(null),//- Usando Navegação por rotas, não precisa do atributo home:
+      home: ListaLivrosPage(
+          livro), //- Usando Navegação por rotas, não precisa do atributo home:
     );
   }
 }

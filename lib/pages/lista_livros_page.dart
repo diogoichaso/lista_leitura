@@ -5,12 +5,9 @@ import 'package:lista_leitura/pages/formulario_livro_page.dart';
 import '../componentes/componentes.dart';
 
 class ListaLivrosPage extends StatefulWidget {
-  ListaLivrosPage(livro);
-  final Livro livro = Livro("", "", false);
-  @override
-  void initState() {
-    this.livro;
-  }
+  final Livro livro;
+
+  ListaLivrosPage(this.livro);
 
   @override
   State<ListaLivrosPage> createState() => _ListaLivrosPageState();
@@ -18,11 +15,13 @@ class ListaLivrosPage extends StatefulWidget {
 
 class _ListaLivrosPageState extends State<ListaLivrosPage> {
   List<Livro> meuLivro = [];
-  Livro livro = Livro("", "", false);
   @override
   void initState() {
-    if (this.livro != null) {
-      meuLivro.add(this.livro);
+    print('Entrou no initState. livro: ${widget.livro}');
+    if (widget.livro != Null) {
+      print('widget.livro != null');
+      meuLivro.add(widget.livro);
+      print(meuLivro);
       super.initState();
     }
   }
@@ -54,7 +53,6 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                           onPressed: () {
                             // Navigator.of(context).push('/form');//NAVEGAÇÃO POR ROTAS
                             //NAVEGAÇÃO DIRETA
-                            Navigator.of(context).pop();
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => FormularioLivroPage(),

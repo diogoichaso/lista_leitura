@@ -14,7 +14,7 @@ class FormularioLivroPage extends StatefulWidget {
 
 class _FormularioLivroPageState extends State<FormularioLivroPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Livro livro = Livro('', '', false);
+  Livro livro = Livro();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,6 @@ class _FormularioLivroPageState extends State<FormularioLivroPage> {
                   ),
                   onSaved: (titulo) {
                     livro.titulo = titulo.toString();
-                    print(titulo);
                   },
                   validator: (titulo) =>
                       titulo == '' ? 'Título é obrigatório' : null,

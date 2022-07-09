@@ -20,6 +20,30 @@ class ListaLivros extends StatelessWidget {
 
   final List<Livro> listaLivros;
 
+  String lerTitulo(livro) {
+    if (livro.titulo == null) {
+      return '';
+    } else {
+      return livro.titulo;
+    }
+  }
+
+  bool confereLido(livro) {
+    if (livro.lido == null) {
+      return false;
+    } else {
+      return livro.lido;
+    }
+  }
+
+  String lerDescricao(livro) {
+    if (livro.descricao == null) {
+      return '';
+    } else {
+      return livro.descricao;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -31,21 +55,23 @@ class ListaLivros extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 58),
             child: Text(
-              livro.titulo,
+              lerTitulo(livro),
               style: TextStyle(
-                  color: livro.lido ? Colors.grey : Colors.black,
+                  color: confereLido(livro) ? Colors.grey : Colors.black,
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  decoration: livro.lido ? TextDecoration.lineThrough : null),
+                  decoration:
+                      confereLido(livro) ? TextDecoration.lineThrough : null),
             ),
           ),
           subtitle: Padding(
             padding: const EdgeInsets.only(left: 58),
             child: Text(
-              livro.descricao,
+              lerDescricao(livro),
               style: TextStyle(
-                  color: livro.lido ? Colors.grey : Colors.black,
-                  decoration: livro.lido ? TextDecoration.lineThrough : null),
+                  color: confereLido(livro) ? Colors.grey : Colors.black,
+                  decoration:
+                      confereLido(livro) ? TextDecoration.lineThrough : null),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
