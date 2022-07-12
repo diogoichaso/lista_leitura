@@ -1,18 +1,26 @@
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:lista_leitura/classes/livro.dart';
 
 class FormularioLivroPage extends StatefulWidget {
-  FormularioLivroPage(this.onCadastrar);
+  FormularioLivroPage(this.livro, this.onCadastrar);
   final Function(Livro) onCadastrar;
+  Livro livro = Livro(Random().nextInt(255), '', '', false);
   @override
   State<FormularioLivroPage> createState() => _FormularioLivroPageState();
 }
 
 class _FormularioLivroPageState extends State<FormularioLivroPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Livro livro = Livro('', '', false);
+  Livro livro = Livro(0, '', '', false);
+
+  @override
+  void initState() {
+    livro = widget.livro;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

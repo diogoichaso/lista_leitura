@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:lista_leitura/classes/livro.dart';
 import 'package:lista_leitura/pages/formulario_livro_page.dart';
@@ -12,7 +14,7 @@ class ListaLivrosPage extends StatefulWidget {
 }
 
 class _ListaLivrosPageState extends State<ListaLivrosPage> {
-  List<Livro> meuLivro = [];
+  Set<Livro> meuLivro = {};
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
-                                    FormularioLivroPage((livro) {
+                                    FormularioLivroPage(Livro(Random().nextInt(255), '','',false), (livro) {
                                   setState(() {
                                     meuLivro.add(livro);
                                   });
@@ -61,7 +63,11 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                     ),
                   ),
                   LinhaHorizontal(),
-                  ListaLivros(meuLivro),
+                  ListaLivros(meuLivro, (livro) {
+                                  setState(() {
+                                    meuLivro.add(livro);
+                                  });
+                                }),
                   if (meuLivro.isNotEmpty) LinhaHorizontal(),
                 ],
               ),
@@ -80,14 +86,14 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
   }
 }
 
-void lerLivro(context, meuLivro) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => FormularioLivroPage((livro) {
-        //setState(() {
-          meuLivro.add(livro);
+//void lerLivro(context, meuLivro) {
+ // Navigator.of(context).push(
+  //  MaterialPageRoute(
+   //   builder: (context) => FormularioLivroPage((livro) {
+    //    //setState(() {
+     //     meuLivro.add(livro);
         //});
-      }),
-    ),
-  );
-}
+     // }),
+   // ),
+ // );
+//}
