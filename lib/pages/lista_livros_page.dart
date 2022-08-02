@@ -45,12 +45,16 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                             //NAVEGAÇÃO DIRETA
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    FormularioLivroPage(Livro(Random().nextInt(255), '','',false), (livro) {
-                                  setState(() {
-                                    meuLivro.add(livro);
-                                  });
-                                }),
+                                builder: (context) => FormularioLivroPage(
+                                  Livro(Random().nextInt(255), '', '', false),
+                                  (livro) {
+                                    setState(
+                                      () {
+                                        meuLivro.add(livro);
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             );
                             //setState(() {
@@ -64,10 +68,14 @@ class _ListaLivrosPageState extends State<ListaLivrosPage> {
                   ),
                   LinhaHorizontal(),
                   ListaLivros(meuLivro, (livro) {
-                                  setState(() {
-                                    meuLivro.add(livro);
-                                  });
-                                }),
+                    setState(() {
+                      meuLivro.add(livro);
+                    });
+                  }, (livro) {
+                    setState(() {
+                      meuLivro.remove(livro);
+                    });
+                  }),
                   if (meuLivro.isNotEmpty) LinhaHorizontal(),
                 ],
               ),

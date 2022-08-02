@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lista_leitura/pages/formulario_livro_page.dart';
 
 import '../classes/livro.dart';
+import '../pages/lista_livros_page.dart';
 
 class LinhaHorizontal extends StatelessWidget {
   const LinhaHorizontal({Key? key}) : super(key: key);
@@ -16,25 +17,45 @@ class LinhaHorizontal extends StatelessWidget {
   }
 }
 
-class ListaLivros extends StatelessWidget {
-  const ListaLivros(this.listaLivros, this.onCadastrar);
+class ListaLivros extends StatefulWidget {
+  ListaLivros(this.listaLivros, this.onCadastrar, this.onDeletar);
 
-  final Set<Livro> listaLivros;
+  Set<Livro> listaLivros;
   final Function(Livro) onCadastrar;
+  final Function(Livro) onDeletar;
 
+  @override
+  State<ListaLivros> createState() => _ListaLivrosState();
+}
+
+class _ListaLivrosState extends State<ListaLivros> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, i) {
-        final livro = listaLivros.elementAt(i);
+        final livro = widget.listaLivros.elementAt(i);
         return ListTile(
           onTap: (() => {
-              print(livro),
+                print(livro),
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => FormularioLivroPage(livro, onCadastrar)))
+                    builder: (_) =>
+                        FormularioLivroPage(livro, widget.onCadastrar)))
               }),
+          trailing: GestureDetector(
+            onTap: () {
+              print(livro);
+              setState(() {
+                widget.onDeletar(livro);
+                ListaLivrosPage();
+              });
+            },
+            child: Padding(
+              padding: EdgeInsets.only(right: 12),
+              child: Icon(Icons.delete_forever),
+            ),
+          ),
           title: Padding(
             padding: const EdgeInsets.only(left: 58),
             child: Text(
@@ -62,7 +83,7 @@ class ListaLivros extends StatelessWidget {
         );
       },
       separatorBuilder: (context, i) => LinhaHorizontal(),
-      itemCount: listaLivros.length,
+      itemCount: widget.listaLivros.length,
     );
   }
 }
